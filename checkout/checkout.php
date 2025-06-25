@@ -113,10 +113,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['place_order'])) {
                     . "<p style='font-size:15px;color:#333333;'>Total: <strong style='color:#f85606;'>$" . number_format($final_total, 2) . "</strong></p>"
                     . "<h3 style='color:#007bff;margin-top:24px;'>Payment Instructions</h3>";
                 if ($payment_method == 'bank_transfer') {
-                    $body .= "<p style='font-size:15px;color:#333333;'>Please transfer <strong style='color:#f85606;'>$" . number_format($final_total, 2) . "</strong> to:<br>"
-                        . "<span style='color:#6f42c1;'>Bank: Example Bank<br>Account Number: 1234567890<br>Routing Number: 0987654321<br>Reference: Order #$order_id</span></p>";
+                    $body .= "<p style='font-size:15px;color:#333333;'>Please transfer <strong style='color:#f85606;'>&#8358;" . number_format($final_total, 2) . "</strong> to:<br>"
+                        . "<span style='color:#6f42c1;'>Bank: Zenith Bank<br>Account Number: 4069790180<br>Routing Number: 0987654321<br>Reference: Order #$order_id</span></p>";
                 } else {
-                    $body .= "<p style='font-size:15px;color:#333333;'>Cash on Delivery: Have <strong style='color:#f85606;'>$" . number_format($final_total, 2) . "</strong> ready upon delivery.</p>";
+                    $body .= "<p style='font-size:15px;color:#333333;'>Credit Card: Have <strong style='color:#f85606;'>$" . number_format($final_total, 2) . "</strong> ready upon delivery.</p>";
                 }
                 $body .= "<p style='font-size:15px;color:#333333;'>We'll notify you once your payment is confirmed.</p>"
                     . "<hr style='margin:24px 0;border-color:#f8f9fa;'>"
@@ -180,28 +180,28 @@ $user = $stmt->fetch();
                             <?php foreach ($cart_items as $item): ?>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span><?php echo htmlspecialchars($item['name']); ?> (x<?php echo $item['quantity']; ?>)</span>
-                                    <span>$<?php echo number_format($item['subtotal'], 2); ?></span>
+                                    <span>&#8358;<?php echo number_format($item['subtotal'], 2); ?></span>
                                 </li>
                             <?php endforeach; ?>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Subtotal</span>
-                                <span>$<?php echo number_format($total, 2); ?></span>
+                                <span>&#8358;<?php echo number_format($total, 2); ?></span>
                             </li>
                             <?php if ($discount > 0): ?>
                                 <li class="list-group-item d-flex justify-content-between text-success">
                                     <span>Discount (<?php echo htmlspecialchars($discount_code); ?>)</span>
-                                    <span>-$<?php echo number_format($discount, 2); ?></span>
+                                    <span>-&#8358;<?php echo number_format($discount, 2); ?></span>
                                 </li>
                             <?php endif; ?>
                             <li class="list-group-item d-flex justify-content-between fw-bold">
                                 <span>Total</span>
-                                <span>$<?php echo number_format($total - $discount, 2); ?></span>
+                                <span>&#8358;<?php echo number_format($total - $discount, 2); ?></span>
                             </li>
                         </ul>
                         <form method="POST" action="" class="mt-3" id="discount-form">
                             <div class="input-group">
                                 <input type="text" name="discount_code" class="form-control" placeholder="Discount Code">
-                                <button type="submit" name="apply_discount" class="btn btn-primary">Apply</button>
+                                <button type="submit" name="apply_discount" class="btn btn-primary" style="width: 100px!important;">Apply</button>
                             </div>
                             <?php if (isset($discount_error)): ?>
                                 <div class="text-danger small mt-1"><?php echo htmlspecialchars($discount_error); ?></div>
@@ -293,8 +293,8 @@ $user = $stmt->fetch();
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" name="payment_method" id="cash_on_delivery" value="cash_on_delivery" class="form-check-input" required>
-                                    <label for="cash_on_delivery" class="form-check-label">Cash on Delivery</label>
-                                    <p class="small text-muted">Pay when your order is delivered.</p>
+                                    <label for="cash_on_delivery" class="form-check-label">Credit Card</label>
+                                    <p class="small text-muted">Pay with your credit card.</p>
                                 </div>
                                 <div class="invalid-feedback d-block">Please select a payment method.</div>
                             </div>

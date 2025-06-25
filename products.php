@@ -82,8 +82,8 @@ if (isset($_GET['error'])) {
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
                             <p class="card-text">&#8358;<?php echo number_format($product['price'], 2); ?></p>
-                            <a href="view_products.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">View</a>
-                            <a href="cart/add_to_cart.php?id=<?php echo $product['id']; ?>" class="btn btn-success">Add to Cart</a>
+                            <a href="view_products.php?id=<?php echo $product['id']; ?>" class="btn btn-primary" style="width:100px!important;">View</a>
+                            <a href="cart/add_to_cart.php?id=<?php echo $product['id']; ?>" class="btn btn-success" >Add to Cart</a>
                         </div>
                     </div>
                 </div>

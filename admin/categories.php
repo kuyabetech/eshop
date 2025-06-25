@@ -133,7 +133,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) 
 
         <!-- Add/Edit Category Form -->
         <h4><?php echo $edit_category ? 'Edit Category' : 'Add New Category'; ?></h4>
-        <form method="POST" action="">
+        <form method="POST" action="" class="admin-card m-4 p-4">
 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
             <input type="hidden" name="action" value="<?php echo $edit_category ? 'edit' : 'add'; ?>">
             <?php if ($edit_category): ?>
@@ -155,7 +155,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) 
 
         <!-- Category List -->
         <h4 class="mt-5">Category List</h4>
-        <div class="table-responsive">
+        <div class="table-responsive m-4 p-4">
             <table class="table table-striped">
                 <thead>
                     <tr>

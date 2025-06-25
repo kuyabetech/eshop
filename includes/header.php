@@ -29,11 +29,17 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">  
     <link href="<?php echo $baseUrl; ?>assets/css/styles.css" rel="stylesheet">  
+    <script src="<?php echo $baseUrl; ?>assets/js/scripts.js" defer></script>
+
 </head>  
 <body>  
     <nav class="navbar navbar-expand-lg navbar-light bg-light">  
         <div class="container-fluid">  
-            <a class="navbar-brand" href="index.php">E-Shop</a>  
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <a class="navbar-brand" href="<?php echo $baseUrl; ?>admin/index.php">E-Shop</a>
+            <?php else: ?>
+                <a class="navbar-brand" href="<?php echo $baseUrl; ?>index.php">E-Shop</a>
+            <?php endif; ?>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
                 <span class="navbar-toggler-icon"></span>  
             </button>  

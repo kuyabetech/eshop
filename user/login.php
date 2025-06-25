@@ -136,7 +136,7 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
-    <script src="assets/js/scripts.js"></script>
+    <script src="../assets/js/scripts.js"></script>
     <script>
         $('#login-form').on('submit', function(e) {
     const form = this;

@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #f8f9fa;
+    color: #222;
+}
+
+.admin-title {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-primary, .btn-success {
+    background: #f85606;
+    border-color: #f85606;
+    font-weight: 500;
+    transition: background 0.2s, border 0.2s;
+}
+.btn-primary:hover, .btn-success:hover {
+    background: #d94d04;
+    border-color: #d94d04;
+}
+
+.btn-outline-primary {
+    color: #f85606;
+    border-color: #f85606;
+}
+.btn-outline-primary:hover {
+    background: #f85606;
+    color: #fff;
+}
+
+.carousel {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+.carousel-inner img {
+    border-radius: 12px;
+}
+
+.carousel-caption {
+    background: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+}
+.card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.95rem;
+}
+
+.admin-card {
+    background: #fff;
+    border: none;
+}
+
+.admin-table th, .admin-table td {
+    vertical-align: middle;
+}
+
+.low-stock {
+    color: #d94d04;
+    font-weight: bold;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 768px) {
+    .carousel-inner img {
+        height: 220px !important;
+    }
+    .card-img-top {
+        height: 120px !important;
+    }
+    .admin-title {
+        font-size: 1.3rem;
+    }
+}
+
+:root {
+    --temu-primary: #f85606;
+    --temu-secondary: #fff;
+}

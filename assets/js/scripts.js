@@ -182,3 +182,20 @@ $('#postal_code').on('change', function() {
         updateTotal();
     });
 });
+
+
+// Form Validation
+$('.needs-validation').on('submit', function(e) {
+    const form = this;
+    if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(form).addClass('was-validated');
+    }
+});
+
+// Clear Validation on Input
+$('.needs-validation input, .needs-validation select').on('input', function() {
+    $(this).removeClass('is-invalid');
+    $(this).next('.invalid-feedback').text('');
+});

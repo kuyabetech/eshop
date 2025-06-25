@@ -97,7 +97,9 @@ if (!isset($_SESSION['csrf_token'])) {
                     <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                     <div class="input-group mb-3">
                         <input type="number" name="quantity" value="1" min="1" max="<?php echo $product['stock']; ?>" class="form-control quantity-input">
-                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100px!important;">
+                            <i class="fas fa-cart-plus"></i>Add
+                        </button>
                     </div>
                 </form>
             </div>

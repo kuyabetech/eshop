@@ -106,7 +106,7 @@ if (isset($_GET['action'], $_GET['id']) && $_GET['action'] === 'edit') {
 
         <!-- Add/Edit Discount Form -->
         <h4><?php echo $edit_discount ? 'Edit Discount Code' : 'Add New Discount Code'; ?></h4>
-        <form method="POST" action="">
+        <form method="POST" action="" class="admin-card p-4 m-4" novalidate>
           <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="hidden" name="action" value="<?php echo $edit_discount ? 'edit' : 'add'; ?>">
             <?php if ($edit_discount): ?>
@@ -140,7 +140,7 @@ if (isset($_GET['action'], $_GET['id']) && $_GET['action'] === 'edit') {
 
         <!-- Discount List -->
         <h4 class="mt-5">Discount Codes</h4>
-        <div class="table-responsive">
+        <div class="table-responsive m-4 p-4">
             <table class="table table-striped">
                 <thead>
                     <tr>

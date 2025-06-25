@@ -127,7 +127,7 @@ $orders = $stmt->fetchAll();
                 <div class="col-md-6">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Search by Order ID or Tracking Number" value="<?php echo htmlspecialchars($search_query ?? ''); ?>">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100px!important;">Search</button>
                     </div>
                 </div>
                 <div class="col-md-3">

@@ -58,12 +58,12 @@ if ($order_id && isset($_SESSION['user_id'])) {
                 <?php if ($order['payment_method'] == 'bank_transfer'): ?>
                     <p>Please transfer <strong>$<?php echo number_format($order['total'], 2); ?></strong> to:</p>
                     <ul>
-                        <li>Bank: Example Bank</li>
-                        <li>Account Number: 1234567890</li>
+                        <li>Bank: Zenith Bank</li>
+                        <li>Account Number: 4069790180</li>
                         <li>Routing Number: 0987654321</li>
                         <li>Reference: Order #<?php echo $order['id']; ?></li>
                     </ul>
-                    <p>Send proof of payment to <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.</p>
+                    <p>Send proof of payment to <a href="mailto:support@yourdomain.com">support@eshop.com</a>.</p>
                 <?php else: ?>
                     <p>Please have <strong>$<?php echo number_format($order['total'], 2); ?></strong> ready upon delivery.</p>
                 <?php endif; ?>

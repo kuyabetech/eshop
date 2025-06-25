@@ -34,16 +34,17 @@ if (isset($_GET['error'])) {
 <a href="clear_cart.php" class="btn btn-danger">Clear Cart</a>
     <div class="container mt-5">
         <h2>Shopping Cart</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <div class="table-responsive">
+            <table class="table table-hover orders-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
             <tbody>
                 <?php
                 $total = 0;
@@ -66,7 +67,7 @@ if (isset($_GET['error'])) {
                                 </form>
                             </td>
                             <td>&#8358;<?php echo number_format($subtotal, 2); ?></td>
-                            <td><a href="remove_from_cart.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm">Remove</a></td>
+                            <td><a href="remove_cart.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm">Remove</a></td>
                         </tr>
                         <?php
                     }
@@ -76,7 +77,7 @@ if (isset($_GET['error'])) {
             <tfoot>
                 <tr>
                     <td colspan="3" class="text-end"><strong>Total</strong></td>
-                    <td>$<?php echo number_format($total, 2); ?></td>
+                    <td>&#8358;<?php echo number_format($total, 2); ?></td>
                     <td></td>
                 </tr>
             </tfoot>

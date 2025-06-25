@@ -147,7 +147,7 @@ $orders = $stmt->fetchAll();
                         <td>#<?php echo $order['id']; ?></td>
                         <td><?php echo htmlspecialchars($order['username']); ?></td>
                         <td><?php echo date('F j, Y', strtotime($order['created_at'])); ?></td>
-                        <td>$<?php echo number_format($order['total'], 2); ?></td>
+                        <td>&#8358;<?php echo number_format($order['total'], 2); ?></td>
                         <td><?php echo $order['item_count']; ?></td>
                         <td>
                             <form method="POST" action="" class="d-inline">

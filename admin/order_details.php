@@ -78,8 +78,8 @@ $order_items = $stmt->fetchAll();
                     <tr>
                         <td><?php echo htmlspecialchars($item['name']); ?></td>
                         <td><?php echo $item['quantity']; ?></td>
-                        <td>$<?php echo number_format($item['price'], 2); ?></td>
-                        <td>$<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
+                        <td>&#8358;<?php echo number_format($item['price'], 2); ?></td>
+                        <td>&#8358;<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

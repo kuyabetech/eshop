@@ -63,7 +63,7 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         <?php if (isset($_GET['error'])): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
-        <div class="table-responsive">
+        <div class="table-responsive admin-card">
             <table class="table table-striped">
                 <thead>
                     <tr>

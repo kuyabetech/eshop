@@ -1,6 +1,11 @@
 <?php
 require '../includes/config.php';
 
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Ensure user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php?error=Unauthorized access");
@@ -14,7 +19,7 @@ if (!$product_id) {
     header("Location: products.php?error=Invalid product ID");
     exit;
 }
-if (!$csrf_token || $csrf_token !== $_SESSION['csrf_token']) {
+if (!isset($_SESSION['csrf_token']) || !$csrf_token || $csrf_token !== $_SESSION['csrf_token']) {
     header("Location: products.php?error=CSRF token validation failed");
     exit;
 }
