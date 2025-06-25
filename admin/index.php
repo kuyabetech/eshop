@@ -96,7 +96,6 @@ try {
                 <canvas id="dashboardChart" height="400"></canvas>
             </div>
         </div>
-        
         <!-- Recent Orders -->
         <div class="row mb-5">
             <div class="col-md-12">

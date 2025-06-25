@@ -149,14 +149,6 @@ require __DIR__ . '/includes/header.php';
             <?php endif; ?>
         </div>
     </div>
-    <!-- Promotional Banner -->
-    <div class=" text-white text-center py-4 mt-5 " style="background-color: #f85606;">
-        <div class="container">
-            <h3>Special Offer!</h3>
-            <p>Use code <strong>SAVE10</strong> for 10% off your first order!</p>
-            <a href="products.php" class="btn btn-light">Shop Now</a>
-        </div>
-    </div>
     <?php include 'includes/footer.php'; ?>
 </body>
 </html>
