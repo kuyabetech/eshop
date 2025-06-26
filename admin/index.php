@@ -39,8 +39,9 @@ try {
     $total_products = $stmt->fetchColumn();
 
     // Dropshipping metrics
-    $stmt = $pdo->query("SELECT COUNT(*) AS dropship_orders FROM orders WHERE supplier_order_id IS NOT NULL");
-    $dropship_orders = $stmt->fetchColumn();
+    // $stmt = $pdo->query("SELECT COUNT(*) AS dropship_orders FROM orders WHERE supplier_order_id IS NOT NULL");
+    // $dropship_orders = $stmt->fetchColumn();
+    $dropship_orders = 0; // Remove this metric if not needed
 
     $stmt = $pdo->query("SELECT COUNT(*) AS active_suppliers FROM suppliers");
     $active_suppliers = $stmt->fetchColumn();
@@ -58,7 +59,7 @@ try {
     $suppliers = $stmt->fetchAll();
 } catch (PDOException $e) {
     error_log("Dashboard query error: " . $e->getMessage());
-    $error = "Failed to load dashboard data. Please try again.";
+    $error = "Failed to load dashboard data: " . $e->getMessage(); // Show actual error for debugging
     // Ensure variables are set even on error
     $dropship_orders = 0;
     $active_suppliers = 0;
@@ -152,6 +153,12 @@ try {
             <div class="card-body">
                 <h4 class="card-title" style="color: var(--temu-primary);">Manage Suppliers</h4>
                 <a href="add_supplier.php" class="btn btn-primary mb-3">Add Supplier</a>
+                <?php if (isset($error)): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php echo htmlspecialchars($error); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
                 <div class="table-responsive">
                     <table class="table table-hover orders-table">
                         <thead>
@@ -223,14 +230,15 @@ try {
                                         </td>
                                         <td>
                                             <span class="badge orders-badge bg-<?php
-                                                switch ($order['fulfillment_status']) {
+                                                $fulfillment = (isset($order['fulfillment_status']) && $order['fulfillment_status']) ? $order['fulfillment_status'] : '';
+                                                switch ($fulfillment) {
                                                     case 'pending': echo 'warning'; break;
                                                     case 'fulfilled': echo 'success'; break;
                                                     case 'failed': echo 'danger'; break;
                                                     default: echo 'secondary';
                                                 }
                                             ?>">
-                                                <?php echo ucfirst($order['fulfillment_status'] ?? 'N/A'); ?>
+                                                <?php echo $fulfillment ? ucfirst($fulfillment) : 'N/A'; ?>
                                             </span>
                                         </td>
                                         <td>

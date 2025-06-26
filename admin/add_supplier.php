@@ -14,7 +14,12 @@ if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+if (!isset($pdo) || !$pdo) {
+    die("Database connection not established.");
+}
+
 $error = $success = null;
+$name = $api_key = $api_url = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $api_key = filter_input(INPUT_POST, 'api_key', FILTER_SANITIZE_STRING);
@@ -29,17 +34,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $pdo->prepare("INSERT INTO suppliers (name, api_key, api_url) VALUES (?, ?, ?)");
             $stmt->execute([$name, $api_key, $api_url]);
-            $success = "Supplier added successfully.";
-            // Invalidate cache
-            if (class_exists('Redis')) {
-                $redis = new Redis();
-                if ($redis->connect('localhost', 6379)) {
-                    $redis->del("dashboard_metrics");
+            if ($stmt->rowCount() > 0) {
+                $success = "Supplier added successfully.";
+                $name = $api_key = $api_url = '';
+                // Invalidate cache
+                if (class_exists('Redis')) {
+                    $redis = new Redis();
+                    if ($redis->connect('localhost', 6379)) {
+                        $redis->del("dashboard_metrics");
+                    }
                 }
+            } else {
+                $error = "Failed to add supplier. No rows affected.";
             }
         } catch (PDOException $e) {
             error_log("Add supplier error: " . $e->getMessage());
-            $error = "Failed to add supplier.";
+            // Uncomment the next line for debugging, then remove/comment it after fixing
+            $error = "Failed to add supplier: " . $e->getMessage();
+            // $error = "Failed to add supplier.";
         }
     }
 }
@@ -74,17 +86,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <div class="mb-3">
                 <label for="name" class="form-label">Supplier Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" required value="<?php echo htmlspecialchars($name); ?>">
                 <div class="invalid-feedback">Please enter a supplier name.</div>
             </div>
             <div class="mb-3">
                 <label for="api_key" class="form-label">API Key</label>
-                <input type="text" class="form-control" id="api_key" name="api_key" required>
+                <input type="text" class="form-control" id="api_key" name="api_key" required value="<?php echo htmlspecialchars($api_key); ?>">
                 <div class="invalid-feedback">Please enter an API key.</div>
             </div>
             <div class="mb-3">
                 <label for="api_url" class="form-label">API URL</label>
-                <input type="url" class="form-control" id="api_url" name="api_url" required>
+                <input type="url" class="form-control" id="api_url" name="api_url" required value="<?php echo htmlspecialchars($api_url); ?>">
                 <div class="invalid-feedback">Please enter a valid API URL.</div>
             </div>
             <button type="submit" class="btn btn-primary">Add Supplier</button>
